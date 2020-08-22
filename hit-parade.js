@@ -46,7 +46,7 @@ const songsLists = () => {
     </td>
   </tr>`).join('');
   tableBody.innerHTML = html;
-}
+};
 
 //This function takes values of the inputs form the users and output it.
 const generatesListsOfSongs = (e) => {

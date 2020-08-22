@@ -17,9 +17,9 @@ label {
   justify-content: space-between;
 };
 
-td img {
-  width: 10px;
-  height: 10px;
+img {
+  width: 100px;
+  height: 100px;
 }
 
 span {

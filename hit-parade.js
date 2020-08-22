@@ -181,10 +181,10 @@ const restoreFromLocalStorage = () => {
   const listOfSongs = JSON.parse(localStorage.getItem('songs'));
   if (listOfSongs.length) {
     songs.push(...listOfSongs);
-  }
+  };
   //Create list of items from the local storage
   tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
-}
+};
 
 //Here the listeners events
 formEl.addEventListener("submit", generatesListsOfSongs);
@@ -200,7 +200,7 @@ tableBody.addEventListener("click", (e) => {
   if (e.target.matches('.update')) {
    updateSocres(id);
   }
-})
+});
 tableBody.addEventListener('listsSongsUpdated', songsLists);
 tableBody.addEventListener('listsSongsUpdated', initToLocalStorage);
 restoreFromLocalStorage();

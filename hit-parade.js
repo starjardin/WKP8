@@ -43,6 +43,7 @@ const tableBody = document.querySelector('.tbody');
 const filterByName = document.querySelector('[name="searchName"]');
 const filterByStyle = document.querySelector('[name="searchStyle"]');
 const reset = document.querySelector('.reset');
+const searchs = document.querySelectorAll(".search");
 
 const songsLists = () => {
   const html = songs.map(song => 
@@ -107,11 +108,23 @@ const updateSocres = (id) => {
   });
   tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
 };
+const searchFunction = (e) => {
+  const textSearched = e.target.value;
+  let filteringSons = [...songs]
+  songs = songs.filter(song => song.title.includes(textSearched));
+  songs = songs.filter(song => song.style.includes(textSearched));
+  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+}
 
+const resetFunction = (e) => {
+  searchs.value = '';
+  songs
+  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+}
 
 formEl.addEventListener("submit", generatesListsOfSongs);
-// tableBody.addEventListener('');
-reset.addEventListener("click", filterList);
+searchs.forEach(search => search.addEventListener("input", searchFunction));
+reset.addEventListener("click", resetFunction);
 tableBody.addEventListener("click", (e) => {
   const id = Number(e.target.value);
   if (e.target.matches(".delete")) {
@@ -126,4 +139,4 @@ tableBody.addEventListener("click", (e) => {
   }
 })
 
-tableBody.addEventListener('listsSongsUpdated', songsLists)
+tableBody.addEventListener('listsSongsUpdated', songsLists);

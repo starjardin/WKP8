@@ -20,13 +20,13 @@
             <div class="row">
               <div class="col">
                 <label for="search-name">Search a song</label>
-                <input type="text" name="searchName" id="search-name" placeholder="Search a song">
+                <input type="text" name="searchName" id="search-name" placeholder="Search a song" class="search">
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <label for="search-style">Search style</label>
-                <input type="text" name="searchStyle" id="search-style" placeholder="Search style">
+                <input type="text" name="searchStyle" id="search-style" placeholder="Search style" class="search">
               </div>
             </div>
             <div class="row">
@@ -39,7 +39,7 @@
       </div>
       <div class="form_container">
 
-        <form action="#">
+        <form action="#" class="form-submit">
           <div class="row">
             <div class="col">
               <label for="title">Song title</label>
@@ -50,7 +50,7 @@
           <div class="row">
             <div class="col">
               <label for="artist-name">Artist Name</label>
-              <input type="text" name="artist-name" id="artist-name" required placeholder="Artist Name">
+              <input type="text" name="name" id="artist-name" required placeholder="Artist Name">
             </div>
           </div>
 
@@ -75,14 +75,14 @@
           <div class="row">
             <div class="col">
               <label for="length">Song length</label>
-              <input type="number" name="length" id="length" required placeholder="Song length">
+              <input type="datetime" name="length" id="length" required placeholder="4:58" value="4:58">
             </div>
           </div>
 
           <div class="row">
             <div class="col">
               <label for="picture">Artist picture</label>
-              <input type="url" name="picture" id="picture" required placeholder="Artist picture">
+              <input type="url" name="picture" id="picture" required placeholder="https://.com" value="https://.com">
             </div>
           </div>
 
@@ -96,7 +96,7 @@
       <div class="song-lists">
         <table class="table">
           <tbody class="tbody">
-
+            
           </tbody>
         </table>
       </div>

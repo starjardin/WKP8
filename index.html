@@ -14,14 +14,92 @@
           Hit parade.
         </h1>
       </header>
-      <div class="filter"></div>
+      <div class="filter">
+        <form action="#" class="form-filter">
+          <div class="form-filter">
+            <div class="row">
+              <div class="col">
+                <label for="search-name">Search a song</label>
+                <input type="text" name="searchName" id="search-name" placeholder="Search a song">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="search-style">Search style</label>
+                <input type="text" name="searchStyle" id="search-style" placeholder="Search style">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button type="reset" class="reset">Reset filter</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="form_container">
 
         <form action="#">
+          <div class="row">
+            <div class="col">
+              <label for="title">Song title</label>
+              <input type="text" name="title" id="title" required placeholder="Song title">
+            </div>
+          </div>
 
+          <div class="row">
+            <div class="col">
+              <label for="artist-name">Artist Name</label>
+              <input type="text" name="artist-name" id="artist-name" required placeholder="Artist Name">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="style">Song style</label>
+              <select name="style" id="style">
+                <option value="slow">Slow</option>
+                <option value="rap">Rap</option>
+                <option value="hard-rock">Hard Rock</option>
+                <option value="metal">Metal</option>
+                <option value="jazz">Jazz</option>
+                <option value="rnb">R&B</option>
+                <option value="pop">Pop</option>
+                <option value="classical">Classical</option>
+                <option value="techno">Techno</option>
+                <option value="funk">Funk</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="length">Song length</label>
+              <input type="number" name="length" id="length" required placeholder="Song length">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="picture">Artist picture</label>
+              <input type="url" name="picture" id="picture" required placeholder="Artist picture">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <button type="submit" class="submit add">Add</button>
+            </div>
+          </div>
         </form>
       </div>
-      <div class="song-lists"></div>
+      <div class="song-lists">
+        <table class="table">
+          <tbody class="tbody">
+
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <script src="hit-parade.js"></script>

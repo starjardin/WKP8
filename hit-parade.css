@@ -1,0 +1,18 @@
+label {
+  display: block;
+}
+
+.row {
+  padding: .5rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.form-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

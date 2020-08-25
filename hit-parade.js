@@ -17,7 +17,7 @@ let songs = [];
 
 //Fundamenal elements
 const formEl = document.querySelector('.form-submit');
-const tableBody = document.querySelector('.tbody');
+const ulListOfSongs = document.querySelector('.ul');
 const filterByName = document.querySelector('[name="searchName"]');
 const filterByStyle = document.querySelector('[name="searchStyle"]');
 const reset = document.querySelector('.reset');
@@ -27,30 +27,36 @@ const searchs = document.querySelectorAll(".search");
 const songsLists = () => {
   //map the mama array to create html for each object
   const html = songs.map(song => 
-  `<tr>
-    <td>
+  `<ul>
+    <li>
       <img src="${song.picuture}" alt="artist's image">
-    </td>
-    <td>
-      <span>Song's name:</span>
+    </li>
+    <li>
+      <span>${song.title}:</span>
       <span>${song.style}</span>
-    </td>
-    <td>
-      <span>Artist name:</span>
+    </li>
+    <li>
       <span>${song.name}</span>
-    </td>
-    <td>
+      <span>${song.length}</span>
+    </li>
+    <li>
       <span>Score:</span>
       <span>${song.score}</span>
-    </td>
-    <td>
+    </li>
+    <li>
       <button type="button" value="${song.id}" class="update">+1</button>
-    </td>
-    <td>
-      <button type="button" value="${song.id}" class="delete">Delete</button>
-    </td>
-  </tr>`).join('');
-  tableBody.innerHTML = html;
+    </li>
+    <li>
+      <button 
+        type="button" 
+        value="${song.id}" 
+        class="delete">
+        <img src="./assets/trash.svg" alt="trash
+        area-label="you have delete the song titled ${song.title}">
+      </button>
+    </li>
+  </ul>`).join('');
+  ulListOfSongs.innerHTML = html;
 };
 
 //This function takes values of the inputs form the users and output it.
@@ -73,7 +79,7 @@ const generatesListsOfSongs = (e) => {
   //Reset the form here to stay clean
   form.reset();
   //This is a custom event that will be fired whenever it is needed.
-  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+  ulListOfSongs.dispatchEvent(new CustomEvent('listsSongsUpdated'));
 };
 
 //Function to delete songs
@@ -81,7 +87,7 @@ const deleteSongs = (id) => {
   //Filter the the songs array and only take the ones which have differend id to the item gets clicked.
   songs = songs.filter(song => song.id !== id);
   //Cutom event will launch after this filter, to create news lists.
-  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+  ulListOfSongs.dispatchEvent(new CustomEvent('listsSongsUpdated'));
 };
 
 //Fuction to update scores
@@ -94,73 +100,61 @@ const updateSocres = (id) => {
     return b.score - a.score;
   });
   //Custom event that will launch after this filter and create a new list depends on the sorted results.
-  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+  ulListOfSongs.dispatchEvent(new CustomEvent('listsSongsUpdated'));
 };
 
+let songsFiltered = [];
 //listen for inputs and take the value and compare to the litle of lists of the songs
 filterByName.addEventListener("input", (e) => {
   //My trick here is to find the similar words usong the includes() method and create a new html from that result.
   const textSearched = e.target.value.toLocaleLowerCase();
-  let songsFilteredByTitle = songs.filter(song => song.title.toLocaleLowerCase().includes(textSearched));
-  //Here is the html for the filtered lists
-  const html = songsFilteredByTitle.map(song => 
-  `<tr>
-    <td>
-      <img src="${song.picuture}" alt="artist's image">
-    </td>
-    <td>
-      <span>Song's name:</span>
-      <span>${song.style}</span>
-    </td>
-    <td>
-      <span>Artist name:</span>
-      <span>${song.name}</span>
-    </td>
-    <td>
-      <span>Score:</span>
-      <span>${song.score}</span>
-    </td>
-    <td>
-      <button type="button" value="${song.id}" class="update">+1</button>
-    </td>
-    <td>
-      <button type="button" value="${song.id}" class="delete">Delete</button>
-    </td>
-  </tr>`).join('');
-  tableBody.innerHTML = html;
+  songsFiltered = songs.filter(song => song.title.toLocaleLowerCase().includes(textSearched));
+  generatedFilteredList(e);
 });
 
 //listen for inputs and take the value and compare to the style of lists of the songs
 filterByStyle.addEventListener("input", e => {
-  //Pretty similar to the first one, they should be done in one functon but I was fint here. I did the last idea was this.
   const textSearched = e.target.value.toLocaleLowerCase();
-  let songsFilteredByStyle = songs.filter(song => song.style.toLocaleLowerCase().includes(textSearched));
-  const html = songsFilteredByStyle.map(song => 
-  `<tr>
-    <td>
+  songsFiltered = songs.filter(song => song.style.toLocaleLowerCase().includes(textSearched));
+  generatedFilteredList(e);
+});
+
+const generatedFilteredList = (e) => {
+  const html = songsFiltered.map(song => 
+  `<ul>
+    <li>
       <img src="${song.picuture}" alt="artist's image">
-    </td>
-    <td>
-      <span>Song's name:</span>
+    </li>
+    <li>
+      <span>${song.title}:</span>
       <span>${song.style}</span>
-    </td>
-    <td>
-      <span>Artist name:</span>
+    </li>
+    <li>
       <span>${song.name}</span>
-    </td>
-    <td>
+      <span>${song.length}</span>
+    </li>
+    <li>
       <span>Score:</span>
       <span>${song.score}</span>
-    </td>
-    <td>
+    </li>
+    <li>
       <button type="button" value="${song.id}" class="update">+1</button>
-    </td>
-    <td>
-      <button type="button" value="${song.id}" class="delete">Delete</button>
-    </td>
-  </tr>`).join('');
-  tableBody.innerHTML = html;
-});
+    </li>
+    <li>
+      <button 
+        type="button"
+        value="${song.id}"
+        class="delete"
+        area-label="you have delete the song titled ${song.title}">
+        <img src="./assets/trash.svg" alt="trash">
+        </button>
+    </li>
+  </ul>`).join('');
+  ulListOfSongs.innerHTML = html;
+  if (songsFiltered.length === 0) {
+    ulListOfSongs.textContent = "Sorry no songs found"
+  }
+}
 
 //reset the search inputs
 const resetFunction = (e) => {
@@ -168,7 +162,7 @@ const resetFunction = (e) => {
   filterByName.value = '',
   filterByStyle.value = '',
   //the list goes back to the normal state here after clicking the reset button
-  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+  ulListOfSongs.dispatchEvent(new CustomEvent('listsSongsUpdated'));
 };
 
 const initToLocalStorage = () => {
@@ -183,24 +177,24 @@ const restoreFromLocalStorage = () => {
     songs.push(...listOfSongs);
   };
   //Create list of items from the local storage
-  tableBody.dispatchEvent(new CustomEvent('listsSongsUpdated'));
+  ulListOfSongs.dispatchEvent(new CustomEvent('listsSongsUpdated'));
 };
 
 //Here the listeners events
 formEl.addEventListener("submit", generatesListsOfSongs);
 reset.addEventListener("click", resetFunction);
-tableBody.addEventListener("click", (e) => {
+ulListOfSongs.addEventListener("click", (e) => {
   const id = Number(e.target.value);
   if (e.target.matches(".delete")) {
     deleteSongs(id);
   }
 });
-tableBody.addEventListener("click", (e) => {
+ulListOfSongs.addEventListener("click", (e) => {
   const id = Number(e.target.value);
   if (e.target.matches('.update')) {
    updateSocres(id);
   }
 });
-tableBody.addEventListener('listsSongsUpdated', songsLists);
-tableBody.addEventListener('listsSongsUpdated', initToLocalStorage);
+ulListOfSongs.addEventListener('listsSongsUpdated', songsLists);
+ulListOfSongs.addEventListener('listsSongsUpdated', initToLocalStorage);
 restoreFromLocalStorage();

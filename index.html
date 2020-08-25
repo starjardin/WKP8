@@ -25,11 +25,23 @@
             </div>
             <div class="row">
               <div class="col">
-                <label for="search-style">Search style</label>
-                <input type="text" name="searchStyle" id="search-style" placeholder="Search style" class="search">
+                <label for="style">Song style</label>
+                <select name="searchStyle" id="style">
+                  <option value="search">search by style</option>
+                  <option value="slow">Slow</option>
+                  <option value="rap">Rap</option>
+                  <option value="hard-rock">Hard Rock</option>
+                  <option value="metal">Metal</option>
+                  <option value="jazz">Jazz</option>
+                  <option value="rnb">R&B</option>
+                  <option value="pop">Pop</option>
+                  <option value="classical">Classical</option>
+                  <option value="techno">Techno</option>
+                  <option value="funk">Funk</option>
+                </select>
               </div>
             </div>
-            <div class="row">
+            <div class="row button">
               <div class="col">
                 <button type="reset" class="reset">Reset filter</button>
               </div>
@@ -94,11 +106,8 @@
         </form>
       </div>
       <div class="song-lists">
-        <table class="table">
-          <tbody class="tbody">
-            
-          </tbody>
-        </table>
+        <div class="ul">
+        </div>
       </div>
     </div>
   </div>
